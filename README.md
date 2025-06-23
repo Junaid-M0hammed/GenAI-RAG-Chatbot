@@ -1,4 +1,4 @@
-# Leave-behind Enterprise Sidekick
+# GenAI RAG Chatbot
 This Enterprise Sidekick is build specifically as a multi-tenant, reusable and configurable sample app to share with enterprises or prospects. It focusses on the interaction between the [Astra DB Vector Store](https://db.new) and the Foundational Large Language Model as *your* data is the only thing that provides a [*Sustainable Competitive Advantage*](https://datastax.medium.com/with-generative-ai-context-is-king-7a1469942044).
 
 ![Chatbot](.assets/chatbot.png)
@@ -73,79 +73,6 @@ pip3 install -r requirements.txt
 ### Set up the secrets
 Then update the `OpenAI`, `AstraDB` and optionally `LangSmith` secrets in `/.streamlit/secrets.toml`. There is an example provided at `secrets.toml.example`.
 
-## 2️⃣ Customizations
-Now it's time to customize the app for your specific situation or customers.
-### Step 1
-Define credentials by adding a new username and password in the `[passwords]` section in `/.streamlit/secrets.toml`. Use the following convention:
-```toml
-[passwords]
-the_username_for_the_user = "the password for the user"
-```
-### Step 2
-Define the UI language of the app by adding a localization code in the `[languages]` section in `/.streamlit/secrets.toml`. Use the following convention:
-```toml
-[languages]
-the_username_for_the_user = "the language definition"
-```
-Currently `en_US`, `nl_NL` and `ro_RO` are supported. However it is easy to add additional languages in `/customizations/localization.csv`.
-### Step 3
-Create a customized welcome page in `/customizations/welcome`. The convention here is to create a markdown file called `<username>.md`. Ideally, list which files have been pre-loaded from step 6.
-In case no custom welcome page is provided, the app uses `default.md`.
-### Step 4
-Create a customized logo in `/customizations/logo`. The convention here is to create an image file called `<username>.svg` or `<username>.png`.
-In case no custom logo is provided, the app uses `default.svg`.
-### Step 5
-Create a guided experience by providing sample prompts in `rails.csv`. The convention here is that `<username>` from Step 1 is used to define the experience. Use the following convention:
-```csv
-username,key,value
-the_username_for_the_user,1,Question prompt number 1
-the_username_for_the_user,2,Question prompt number 2
-another_username_for_another_user,1,Question prompt number 1
-another_username_for_another_user,2,Question prompt number 2
-```
-### Step 6
-Enable or disable the option in the app to delete all the context once loaded. Use the following convention:
-```toml
-[delete_option]
-the_username_for_the_user = "True"
-```
-In case the above is not provides, the app will default to not enabling deleting content and their vector embeddings.
-### Step 7
-You have the option of defining a default prompt in `/customizations/prompt`. The convention here is to create a text file called `<username>.txt`.
-In case no prompt is provided, the app uses `default.txt` and the app will default to using the 'Short results' prompt.
-In case you provide a custom prompt for the user, the app will default to using that on startup.
-### Step 8
-Start up the app and pre-load relevant PDF and Text files so that the app has content that can be used as context for the questions/prompts in the next step. All this data will be loaded into a user specific collection in Astra DB defined by `<username>`.
-
-
-## 3️⃣ Getting started
-You're ready to run the app as follows:
-```
-streamlit run streamlit_app.py
-```
-In addition to the pre-loaded content, a user can add additional content that will be used as context for prompts.
-
-## 4️⃣ Let's deploy this cool stuff to Streamlit cloud!
-In this step we'll deploy your awesome app to the internet so everyone can enjoy your cool work and be amazed!
-
-### Set up your Streamlit account
-If you have not do so before, please set up your account on Streamlit. When you already have an account skip to the next step and deploy the app.
-
-1. Head over to [Streamlit.io](https://streamlit.io) and clikc `Sign up`. Then select `Continue with Github`:
-
-    ![Streamlit](.assets/streamlit-0.png)
-
-2. Log in using your Github credentials:
-
-    ![Streamlit](.assets/streamlit-1.png)
-
-3. Now authorize Streamlit:
-
-    ![Streamlit](.assets/streamlit-2.png)
-
-4. And set up your account:
-
-    ![Streamlit](.assets/streamlit-3.png)
 
 ### Deploy your app
 
@@ -157,7 +84,6 @@ On the main screen, when logged in, click `New app`.
 
 2. Now define your application settings. Use YOUR repository name, and make sure the Main file path is `streamlit_app.py`. Pick a cool App URL as you'll app will be deployed to that:
 
-    ![Streamlit](.assets/streamlit-5.png)
 
 3. Click on Advanced, select `Python 3.11` and copy-paste the contents from your `secrets.toml` or define them here for the first time (see step 1).
 
